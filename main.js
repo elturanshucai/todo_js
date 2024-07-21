@@ -1,7 +1,14 @@
 const form = document.querySelector('form')
 const ul = document.querySelector("ul")
-
+const timeBtn = document.getElementById("time")
+const abcBtn = document.getElementById("abc")
 let todoList = JSON.parse(localStorage.getItem("todoList")) || []
+
+let timeSortType = 'asc'
+let abcSortType = 'asc'
+
+timeBtn.addEventListener("click", sortTime)
+abcBtn.addEventListener("click", sortAlphabet)
 
 function addItem(item) {
     let todoItem = {
@@ -79,6 +86,38 @@ function getTodoList() {
         let li = createLi({ value: todoList[i].title, id: todoList[i].id })
         ul.appendChild(li)
     }
+}
+
+function sortAlphabet() {
+    if (abcSortType === 'asc') {
+        todoList.sort(function (a, b) {
+            let titleA = a.title
+            let titleB = b.title
+            return (titleA > titleB) ? 1 : (titleA < titleB) ? -1 : 0
+        })
+    } else if (abcSortType === 'desc') {
+        todoList.sort(function (a, b) {
+            let titleA = a.title
+            let titleB = b.title
+            return (titleA < titleB) ? 1 : (titleA > titleB) ? -1 : 0
+        })
+    }
+    ul.innerHTML = ''
+    getTodoList()
+    abcSortType === 'asc' ? abcSortType = 'desc' : abcSortType = 'asc'
+    save()
+}
+
+function sortTime() {
+    if (timeSortType === 'asc') {
+        todoList.sort((a, b) => new Date(a.date) - new Date(b.date))
+    } else if (timeSortType === 'desc') {
+        todoList.sort((a, b) => new Date(b.date) - new Date(a.date))
+    }
+    ul.innerHTML = ''
+    getTodoList()
+    timeSortType === 'asc' ? timeSortType = 'desc' : timeSortType = 'asc'
+    save()
 }
 
 form.addEventListener("submit", (e) => {
