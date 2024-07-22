@@ -49,6 +49,9 @@ function save() {
 function clickEdit(id) {
     const input = document.querySelector(`li #input${id}`)
     input.disabled = !input.disabled
+    if(!input.disabled){
+        input.focus()
+    }
 }
 
 function createLi({ value, id }) {
@@ -71,7 +74,11 @@ function createLi({ value, id }) {
         removeItem(e.target.id)
     })
     let edit = document.createElement('button')
-    edit.innerText = 'edit'
+    let editIcon = document.createElement('img')
+    editIcon.src = "images/edit.svg"
+    editIcon.id = id
+    edit.appendChild(editIcon)
+    edit.className = 'edit-btn'
     edit.id = id
     edit.addEventListener("click", (e) => {
         clickEdit(e.target.id)

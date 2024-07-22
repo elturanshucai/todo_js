@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -6,36 +6,42 @@
     color: inherit;
 }
 
-main{
+main {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
 }
 
-.todo{
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.todo {
     width: 350px;
     overflow: hidden;
     border-radius: 10px;
     border: 1px solid #C4C4C4;
 }
 
-.todo-inner{
+.todo-inner {
     padding: 22px;
 }
 
-.yellow{
+.yellow {
     background-color: #FFDC40;
     height: 28px;
 }
 
-.todo h2{
+.todo h2 {
     text-align: center;
     margin-bottom: 15px;
     font-size: 26px;
 }
 
-.filters{
+.filters {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -43,7 +49,7 @@ main{
     margin-bottom: 10px;
 }
 
-input{
+input {
     padding: 10px;
     padding-right: 40px;
     position: relative;
@@ -52,7 +58,7 @@ input{
     border: 1px solid #C4C4C4;
 }
 
-.add-btn{
+.add-btn {
     display: flex;
     background-color: #833AE0;
     border: none;
@@ -69,7 +75,7 @@ input{
     cursor: pointer;
 }
 
-.add-btn span.plus{
+.add-btn span.plus {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,7 +87,7 @@ input{
     border-radius: 70px;
 }
 
-ul{
+ul {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -90,14 +96,69 @@ ul{
     padding: 10px;
 }
 
-li{
+li {
     width: 100%;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-input:disabled{
+input:disabled {
     background-color: inherit;
     border: none;
+}
+
+button#abc{
+    width: 25px;
+    height: 15px;
+}
+
+button#abc img{
+    width: 25px;
+    height: 100%;
+}
+
+button#abc .hover {
+    display: none;
+}
+
+button#abc:hover .hover {
+    display: block;
+}
+
+button#abc:hover .static {
+    display: none;
+}
+
+button#time{
+    width: 25px;
+    height: 15px;
+}
+
+button#time svg{
+    width: 25px;
+    height: 100%;
+    object-fit: cover;
+}
+
+button#time .hover{
+    display: none;
+}
+
+button#time:hover .hover{
+    display: block;
+}
+
+button#time:hover .static{
+    display: none;
+}
+
+.edit-btn{
+    width: 25px;
+    height: 20px;
+}
+
+.edit-btn img{
+    width: 100%;
+    height: 100%;
 }
