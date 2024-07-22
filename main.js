@@ -49,7 +49,7 @@ function save() {
 function clickEdit(id) {
     const input = document.querySelector(`li #input${id}`)
     input.disabled = !input.disabled
-    if(!input.disabled){
+    if (!input.disabled) {
         input.focus()
     }
 }
@@ -67,9 +67,19 @@ function createLi({ value, id }) {
     })
     li.appendChild(input)
     let remove = document.createElement('button')
-    remove.innerText = 'x'
+    let removeIcon = document.createElement('img')
+    removeIcon.src = "images/delete.png"
+    removeIcon.className = 'static'
+    removeIcon.id = id
+    let removeIconHover = document.createElement('img')
+    removeIconHover.src = "images/delete-hover.png"
+    removeIconHover.className = 'hover'
+    removeIconHover.id = id
+    remove.appendChild(removeIcon)
+    remove.appendChild(removeIconHover)
     li.id = id
     remove.id = id
+    remove.className='remove-btn'
     remove.addEventListener("click", (e) => {
         removeItem(e.target.id)
     })
