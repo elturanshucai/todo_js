@@ -2,6 +2,7 @@ const form = document.querySelector('form')
 const ul = document.querySelector("ul")
 const timeBtn = document.getElementById("time")
 const abcBtn = document.getElementById("abc")
+const addBtn = document.getElementsByClassName('add-btn')[0]
 let todoList = JSON.parse(localStorage.getItem("todoList")) || []
 
 let timeSortType = 'asc'
@@ -26,6 +27,7 @@ function removeItem(id) {
     todoList = todoList.filter(item => item.id != id)
     document.getElementById(id).remove()
     save()
+    todoList.length===0 && clickAddButton()
 }
 
 function editItem({ id, newTitle }) {
@@ -79,7 +81,7 @@ function createLi({ value, id }) {
     remove.appendChild(removeIconHover)
     li.id = id
     remove.id = id
-    remove.className='remove-btn'
+    remove.className = 'remove-btn'
     remove.addEventListener("click", (e) => {
         removeItem(e.target.id)
     })
@@ -137,10 +139,21 @@ function sortTime() {
     save()
 }
 
+function clickAddButton() {
+    ul.classList.toggle('open')
+    form.classList.toggle('hidden')
+}
+
 form.addEventListener("submit", (e) => {
     e.preventDefault()
     addItem(e.target[0].value)
     e.target[0].value = ''
+    ul.classList.toggle('open')
+    form.classList.toggle('hidden')
 })
+
+addBtn.addEventListener("click", clickAddButton)
+
+
 
 getTodoList()
