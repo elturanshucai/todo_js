@@ -4,6 +4,7 @@ const timeBtn = document.getElementById("time")
 const abcBtn = document.getElementById("abc")
 const addBtn = document.getElementsByClassName('add-btn')[0]
 let todoList = JSON.parse(localStorage.getItem("todoList")) || []
+let idCount = localStorage.getItem("idCount") || 0
 
 let timeSortType = 'asc'
 let abcSortType = 'asc'
@@ -15,19 +16,23 @@ function addItem(item) {
     let todoItem = {
         date: Date(),
         title: item,
-        id: todoList.length
+        id: idCount
     }
     todoList = [todoItem, ...todoList]
     const li = createLi({ value: todoItem.title, id: todoItem.id })
     ul.prepend(li)
+    idCount++
     save()
 }
 
 function removeItem(id) {
     todoList = todoList.filter(item => item.id != id)
     document.getElementById(id).remove()
+    if (todoList.length === 0) {
+        clickAddButton()
+        idCount = 0
+    }
     save()
-    todoList.length===0 && clickAddButton()
 }
 
 function editItem({ id, newTitle }) {
@@ -46,6 +51,7 @@ function editItem({ id, newTitle }) {
 
 function save() {
     localStorage.setItem("todoList", JSON.stringify(todoList))
+    localStorage.setItem("idCount", idCount)
 }
 
 function clickEdit(id) {
@@ -142,6 +148,7 @@ function sortTime() {
 function clickAddButton() {
     ul.classList.toggle('open')
     form.classList.toggle('hidden')
+    form.todo.focus()
 }
 
 form.addEventListener("submit", (e) => {
