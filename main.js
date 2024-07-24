@@ -107,6 +107,9 @@ function createLi({ value, id }) {
 }
 
 function getTodoList() {
+    if(todoList.length>0){
+        clickAddButton()
+    }
     for (let i = 0; i < todoList.length; i++) {
         let li = createLi({ value: todoList[i].title, id: todoList[i].id })
         ul.appendChild(li)
