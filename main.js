@@ -153,6 +153,7 @@ function clickAddButton() {
 
 form.addEventListener("submit", (e) => {
     e.preventDefault()
+    if(e.target[0].value.trim()===0) return
     addItem(e.target[0].value)
     e.target[0].value = ''
     ul.classList.toggle('open')
