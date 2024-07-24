@@ -107,8 +107,10 @@ function createLi({ value, id }) {
 }
 
 function getTodoList() {
-    if(todoList.length>0){
-        clickAddButton()
+    if (todoList.length > 0) {
+        if (!ul.className.includes('open') && !form.className.includes('hidden')) {
+            clickAddButton()
+        }
     }
     for (let i = 0; i < todoList.length; i++) {
         let li = createLi({ value: todoList[i].title, id: todoList[i].id })
@@ -156,7 +158,7 @@ function clickAddButton() {
 
 form.addEventListener("submit", (e) => {
     e.preventDefault()
-    if(e.target[0].value.trim()===0) return
+    if (e.target[0].value.trim() === 0) return
     addItem(e.target[0].value)
     e.target[0].value = ''
     ul.classList.toggle('open')
